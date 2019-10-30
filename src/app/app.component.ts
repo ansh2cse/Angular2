@@ -8,4 +8,5 @@ export class AppComponent {
   name: string = 'Angular 2! demostration';
   address: string = 'Gurgaon';
   phone: number = 98731311;
+  gender: number = 1;  
 }
