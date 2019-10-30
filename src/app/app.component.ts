@@ -9,4 +9,5 @@ export class AppComponent {
   address: string = 'Gurgaon';
   phone: number = 98731311;
   gender: number = 1;  
+  city: string = 'Delhi';  
 }
