@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   name: string = 'Angular 2! demostration';
+  address: string = 'Gurgaon';
 }
