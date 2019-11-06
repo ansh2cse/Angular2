@@ -8,7 +8,7 @@
     <br />
     <button [disabled]='isDisabled'>ClickMe</button>
     <br />
-    <span innerHtml='pageHeader'></span>
+    <span innerHtml='pageHeader'></span>    
     <br />
     <span bind-innerHtml='pageHeader'></span>
     <br />
@@ -17,5 +17,11 @@
     <span [innerHtml]='badHtml'></span>
     <br />
     <input id='inputId' type="text" value="Tom">
+    <br/>
+    <button class="colorClass" [class]="classesToApply">My Button</button>
+    <br/>
+    <button class="colorClass italicsClass boldClass" [class.applyBoldClass]="applyBoldClass">My Button</button> 
+    <br/>
+    <button class="colorClass" [ngClass]="addClasses()">My Button</button> 
     <span></span>
 </div>

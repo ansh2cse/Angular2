@@ -13,3 +13,14 @@ table {
 td {
   border: 1px solid black;
 }
+.boldClass{
+  font-weight:bold;
+}
+
+.italicsClass{
+  font-style:italic;
+}
+
+.colorClass{
+  color:red;
+}

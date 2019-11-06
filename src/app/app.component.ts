@@ -22,8 +22,20 @@ export class AppComponent {
   isDisabled: boolean = false;
   badHtml: string = 'Hello <script>alert("Hacked");</script> World';
 
-  getFullName(): string {
+  classesToApply: string = 'italicClass boldClass';
+  applyBoldClass: boolean = false;
+  applyItalicClass: boolean = true;
+
+  getFullName(): string { 
     return this.firstName + this.lastName;
+  }
+
+  addClasses(){
+    let classes = {
+      boldClass : this.applyBoldClass,
+      italicsClass: this.applyItalicClass
+    };
+    return classes;
   }
 
 }
