@@ -1,0 +1,21 @@
+<div>
+    <h1>
+        {{'Page Header ' + pageHeader}}
+    </h1>
+    <h2>{{'Full Name - ' + getFullName()}}</h2>
+    <img src="https://www.google.com{{imagePath}}" alt="" />
+    <my-employee></my-employee>
+    <br />
+    <button [disabled]='isDisabled'>ClickMe</button>
+    <br />
+    <span innerHtml='pageHeader'></span>
+    <br />
+    <span bind-innerHtml='pageHeader'></span>
+    <br />
+    <span innerHtml>{{badHtml}}</span>
+    <br />
+    <span [innerHtml]='badHtml'></span>
+    <br />
+    <input id='inputId' type="text" value="Tom">
+    <span></span>
+</div>
