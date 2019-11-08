@@ -8,7 +8,7 @@
     <br />
     <button [disabled]='isDisabled'>ClickMe</button>
     <br />
-    <span innerHtml='pageHeader'></span>    
+    <span innerHtml='pageHeader'></span>
     <br />
     <span bind-innerHtml='pageHeader'></span>
     <br />
@@ -16,12 +16,28 @@
     <br />
     <span [innerHtml]='badHtml'></span>
     <br />
-    <input id='inputId' type="text" value="Tom">
-    <br/>
+    Name : <input [(ngModel)]='firstName'>
+    <br />
+    You entered <label>{{firstName}}</label>
+    <br />
     <button class="colorClass" [class]="classesToApply">My Button</button>
-    <br/>
-    <button class="colorClass italicsClass boldClass" [class.applyBoldClass]="applyBoldClass">My Button</button> 
-    <br/>
-    <button class="colorClass" [ngClass]="addClasses()">My Button</button> 
-    <span></span>
+    <br />
+    <button class="colorClass italicsClass boldClass" [class.applyBoldClass]="applyBoldClass">My Button</button>
+    <br />
+    <button class="colorClass" [ngClass]="addClasses()">My Button</button>
+    <br />
+    <button style="color: red;" [style.font-weight]="isBold ? 'bold':'normal'">My Button style</button>
+    <br />
+    <button style="color: red;" [style.fontWeight]="isBold ? 'bold':'normal'">My Button style</button>
+    <br />
+    <button style="color: red;" [style.fontSize.px]="fontSize">My Button style</button>
+    <br />
+    <button style="color: red;" [ngStyle]="addStyle()">My Button ngStyle</button>
+    <br />
+    <button (click)="onClick()">Click Me</button>
+    <br />
+    <button on-click="onClick()">Click Me (canonical)</button>
+    <div>
+        <list-employee></list-employee>
+    </div>
 </div>

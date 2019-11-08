@@ -25,17 +25,31 @@ export class AppComponent {
   classesToApply: string = 'italicClass boldClass';
   applyBoldClass: boolean = false;
   applyItalicClass: boolean = true;
+  isBold: boolean = false;
+  fontSize: number = 20;
 
-  getFullName(): string { 
+  getFullName(): string {
     return this.firstName + this.lastName;
   }
 
-  addClasses(){
+  addClasses() {
     let classes = {
-      boldClass : this.applyBoldClass,
+      boldClass: this.applyBoldClass,
       italicsClass: this.applyItalicClass
     };
     return classes;
+  }
+
+  addStyle() {
+    let styles = {
+      'font-size.px': this.fontSize,
+      'font-weight': this.isBold ? 'bold' : 'normal'
+    };
+    return styles;
+  }
+
+  onClick(): void {
+    console.log('button clicked!');
   }
 
 }
