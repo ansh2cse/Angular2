@@ -6,12 +6,12 @@ import { Component } from '@angular/core';
     styleUrls: ['app/employee/employeeList.component.css']
 })
 export class EmployeeListComponent {
+    // employees: any[];
     employees: any[];
-
     constructor() {
         this.employees = [
             {
-                code: 'emp101', name: 'Tom', gender: 'Male',
+                code: 'emp101', nam: 'Tom', gender: 'Male',
                 annualSalary: 5500, dateOfBirth: '6/25/1988'
             },
             {
@@ -56,6 +56,30 @@ export class EmployeeListComponent {
 
     trackByEmpCode(index: number, employee: any): string {
         return employee.code;
+    }
+
+    getTotalEmployeesCount(): number {
+        return this.employees.length;
+    }
+    getMaleEmployeesCount(): number {
+        return this.employees.filter(x => x.gender === "Male").length;
+    }
+    getFemaleEmployeesCount(): number {
+        return this.employees.filter(x => x.gender === "Female").length;
+    }
+
+    // This property keeps track of which radio button is selected
+    // We have set the default value to All, so all the employees
+    // are displayed in the table by default
+    selectedEmployeeCountRadioButton: string = 'All';
+
+    // Depending on which radio button is selected, this method updates
+    // selectedEmployeeCountRadioButton property declared above
+    // This method is called when the child component (EmployeeCountComponent)
+    // raises the custom event - countRadioButtonSelectionChanged
+    // The event binding is specified in employeeList.component.html
+    onEmployeeCountRadioButtonChange(selectedRadioButtonValue: string): void {
+        this.selectedEmployeeCountRadioButton = selectedRadioButtonValue;
     }
 
 }
