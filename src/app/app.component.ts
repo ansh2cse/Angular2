@@ -20,7 +20,7 @@ export class AppComponent {
   firstName: string = 'Tom';
   lastName: string = 'Hanks';
   isDisabled: boolean = false;
-  badHtml: string = 'Hello <script>alert("Hacked");</script> World';
+  badHtml: string = '<h4>Hello <script>alert("Hacked");</script> World</h4>';
 
   classesToApply: string = 'italicClass boldClass';
   applyBoldClass: boolean = false;

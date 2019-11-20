@@ -3,26 +3,28 @@
         {{'Page Header ' + pageHeader}}
     </h1>
     <h2>{{'Full Name - ' + getFullName()}}</h2>
+    <!-- property binding -->
+    <img [src]="imagePath" alt="" height="20" width="20" />
+    <!-- interpolation -->
     <img src="https://www.google.com{{imagePath}}" alt="" height="20" width="20" />
     <my-employee></my-employee>
+    <br />
+    <button disabled="{{isDisabled}}">ClickMe</button>
     <br />
     <button [disabled]='isDisabled'>ClickMe</button>
     <br />
     <span innerHtml='pageHeader'></span>
     <br />
+    <!-- canonical form -->
     <span bind-innerHtml='pageHeader'></span>
     <br />
     <span innerHtml>{{badHtml}}</span>
     <br />
     <span [innerHtml]='badHtml'></span>
     <br />
-    Name : <input [(ngModel)]='firstName'>
-    <br />
-    You entered <label>{{firstName}}</label>
-    <br />
     <button class="colorClass" [class]="classesToApply">My Button</button>
     <br />
-    <button class="colorClass italicsClass boldClass" [class.applyBoldClass]="applyBoldClass">My Button</button>
+    <button class="colorClass italicsClass boldClass" [class.boldClass]="applyBoldClass">My Button</button>
     <br />
     <button class="colorClass" [ngClass]="addClasses()">My Button</button>
     <br />
@@ -34,9 +36,18 @@
     <br />
     <button style="color: red;" [ngStyle]="addStyle()">My Button ngStyle</button>
     <br />
+    <!-- event binding -->
     <button (click)="onClick()">Click Me</button>
     <br />
     <button on-click="onClick()">Click Me (canonical)</button>
+    <br />
+    <!-- two-way data binding in Angular -->
+    Name : <input [value]='firstName' (input)='firstName = $event.target.value'>
+    <br />
+    Name : <input [(ngModel)]='firstName'>
+    <br />
+    You entered <label>{{firstName}}</label>
+    <br />
     <div>
         <list-employee></list-employee>
     </div>
