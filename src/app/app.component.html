@@ -51,4 +51,10 @@
     <div>
         <list-employee></list-employee>
     </div>
+    <div>
+        Your Text:
+        <input type="text" [(ngModel)]='userText'/>  
+        <br/><br/>
+        <simple [simpleInput]='userText'></simple>
+    </div>    
 </div>

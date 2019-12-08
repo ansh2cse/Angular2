@@ -27,6 +27,7 @@ export class AppComponent {
   applyItalicClass: boolean = true;
   isBold: boolean = false;
   fontSize: number = 20;
+  userText: string = 'Pragim';
 
   getFullName(): string {
     return this.firstName + this.lastName;
