@@ -1,32 +1,56 @@
 import { Component } from '@angular/core';
+// Import EmployeeService
+import { EmployeeService } from './employee.service'
+import { IEmployee } from './employee';
+// Import OnInit Life Cycle Hook interface
+import { OnInit } from '@angular/core'
 
 @Component({
     selector: 'list-employee',
     templateUrl: 'app/employee/employeeList.component.html',
-    styleUrls: ['app/employee/employeeList.component.css']
+    styleUrls: ['app/employee/employeeList.component.css'],
+    // Register EmployeeService in this component by
+    // declaring it in the providers array
+    providers: [EmployeeService]
 })
-export class EmployeeListComponent {
+
+// Make the class implement OnInit interface
+export class EmployeeListComponent implements OnInit {
+
     // employees: any[];
-    employees: any[];
-    constructor() {
-        this.employees = [
-            {
-                code: 'emp101', nam: 'Tom', gender: 'Male',
-                annualSalary: 5500, dateOfBirth: '6/25/1988'
-            },
-            {
-                code: 'emp102', name: 'Alex', gender: 'Male',
-                annualSalary: 5700.95, dateOfBirth: '9/6/1982'
-            },
-            {
-                code: 'emp103', name: 'Mike', gender: 'Male',
-                annualSalary: 5900, dateOfBirth: '12/8/1979'
-            },
-            {
-                code: 'emp104', name: 'Mary', gender: 'Female',
-                annualSalary: 6500.826, dateOfBirth: '10/14//1980'
-            },
-        ];
+    employees: IEmployee[];
+
+    // Inject EmployeeService using the constructor
+    // The private variable _employeeService which points to
+    // EmployeeService singelton instance is then available
+    // throughout this class
+    constructor(private _employeeService: EmployeeService) {
+        // this.employees = [
+        //     {
+        //         code: 'emp101', nam: 'Tom', gender: 'Male',
+        //         annualSalary: 5500, dateOfBirth: '6/25/1988'
+        //     },
+        //     {
+        //         code: 'emp102', name: 'Alex', gender: 'Male',
+        //         annualSalary: 5700.95, dateOfBirth: '9/6/1982'
+        //     },
+        //     {
+        //         code: 'emp103', name: 'Mike', gender: 'Male',
+        //         annualSalary: 5900, dateOfBirth: '12/8/1979'
+        //     },
+        //     {
+        //         code: 'emp104', name: 'Mary', gender: 'Female',
+        //         annualSalary: 6500.826, dateOfBirth: '10/14//1980'
+        //     },
+        // ];
+        // this.employees = _employeeService.getEmployees();
+    }
+
+    // In ngOnInit() life cycle hook call the getEmployees()
+    // service method of EmployeeService using the private
+    // variable _employeeService
+    ngOnInit(): void {
+        this.employees = this._employeeService.getEmployees();
     }
 
     getEmployees(): void {
