@@ -20,6 +20,13 @@ export class EmployeeListComponent implements OnInit {
     // employees: any[];
     employees: IEmployee[];
 
+    // The view template will bind to this property to display
+    // "Loading data. Please wait..." message when the data is
+    // being loaded. If there is an error the second arrow
+    // function in the subscribe method sets this property to
+    // "Problem with the service. Please try again after sometime"
+    statusMessage: string = 'Loading data. Please wait...';
+
     // Inject EmployeeService using the constructor
     // The private variable _employeeService which points to
     // EmployeeService singelton instance is then available
@@ -51,7 +58,11 @@ export class EmployeeListComponent implements OnInit {
     // variable _employeeService
     ngOnInit(): void {
         //this.employees = this._employeeService.getEmployees();
-        this._employeeService.getEmployees().subscribe(employeesData => this.employees = employeesData);
+        this._employeeService.getEmployees().subscribe(employeesData => this.employees = employeesData,
+            error => {
+                console.error(error);
+                this.statusMessage = 'Problem with the service. Please try again after sometime';
+            });
     }
 
     getEmployees(): void {

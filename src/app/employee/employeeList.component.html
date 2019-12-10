@@ -39,7 +39,7 @@
         and the employees data is displayed-->
         <tr *ngIf="!employees">
             <td colspan="5">
-                Loading data. Please wait...
+                {{statusMessage}}
             </td>
         </tr>
         <!--This message is displayed if the web services does not return any data-->
