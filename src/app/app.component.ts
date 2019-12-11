@@ -16,6 +16,7 @@ export class AppComponent {
 
   pageHeader: string = 'Employee Details';
   imagePath: string = '/gmail/about/static/images/logo-gmail.png';
+  imagePath2: string = './images/logo-gmail.png';
 
   firstName: string = 'Tom';
   lastName: string = 'Hanks';

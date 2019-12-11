@@ -47,6 +47,7 @@ namespace EmployeeWebAPIService.Controllers
         [HttpGet("{code}")]
         public Employee Get(string code)
         {
+            System.Threading.Thread.Sleep(2000);
             return Employees.FirstOrDefault(e => e.Code == code);
         }
     }
