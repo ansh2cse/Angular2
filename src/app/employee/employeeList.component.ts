@@ -4,6 +4,7 @@ import { EmployeeService } from './employee.service'
 import { IEmployee } from './employee';
 // Import OnInit Life Cycle Hook interface
 import { OnInit } from '@angular/core'
+import { UserPreferencesService } from './userPreferences.service';
 
 @Component({
     selector: 'list-employee',
@@ -11,7 +12,7 @@ import { OnInit } from '@angular/core'
     styleUrls: ['app/employee/employeeList.component.css'],
     // Register EmployeeService in this component by
     // declaring it in the providers array
-    providers: [EmployeeService]
+    //providers: [UserPreferencesService]
 })
 
 // Make the class implement OnInit interface
@@ -26,12 +27,13 @@ export class EmployeeListComponent implements OnInit {
     // function in the subscribe method sets this property to
     // "Problem with the service. Please try again after sometime"
     statusMessage: string = 'Loading data. Please wait...';
+    // private _userPreferencesService: UserPreferencesService;
 
     // Inject EmployeeService using the constructor
     // The private variable _employeeService which points to
     // EmployeeService singelton instance is then available
     // throughout this class
-    constructor(private _employeeService: EmployeeService) {
+    constructor(private _employeeService: EmployeeService, private _userPreferencesService: UserPreferencesService) {
         // this.employees = [
         //     {
         //         code: 'emp101', nam: 'Tom', gender: 'Male',
@@ -51,6 +53,15 @@ export class EmployeeListComponent implements OnInit {
         //     },
         // ];
         // this.employees = _employeeService.getEmployees();
+        //this._userPreferencesService = new UserPreferencesService();
+    }
+
+    get colour(): string {
+        return this._userPreferencesService.colourPreference;
+    }
+
+    set colour(value: string) {
+        this._userPreferencesService.colourPreference = value;
     }
 
     // In ngOnInit() life cycle hook call the getEmployees()
