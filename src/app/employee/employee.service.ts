@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/observable'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+// import toPromise operator
+import 'rxjs/add/operator/toPromise'
 
 // The @Injectable() decorator is used to inject other dependencies
 // into this service. As our service does not have any dependencies
@@ -31,9 +33,24 @@ export class EmployeeService {
             .map((response: Response) => <IEmployee>response.json())
             .catch(this.handleError);
     }
+    // Notice we changed the return type of the method to Promise<IEmployee>
+    // from Observable<IEmployee>. We are using toPromise() operator to
+    // return a Promise. When an exception is thrown handlePromiseError()
+    // logs the error to the console and throws the exception again
+    getEmployeeByCodePromise(empCode: string): Promise<IEmployee> {
+        return this._http.get("http://localhost:5000/Employees/" + empCode)
+            .map((response: Response) => <IEmployee>response.json())
+            .toPromise()
+            .catch(this.handlePromiseError);
+    }
     handleError(error: Response) {
         console.error(error);
         return Observable.throw(error);
+    }
+    // This method is introduced to handle exceptions
+    handlePromiseError(error: Response) {
+        console.error(error);
+        throw (error);
     }
 }
 

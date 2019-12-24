@@ -47,7 +47,7 @@ namespace EmployeeWebAPIService
             // global policy - assign here or on each controller
             app.UseCors("CorsPolicy");
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

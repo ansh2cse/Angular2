@@ -14,25 +14,40 @@ export class EmployeeCodeComponent implements OnInit {
     statusMessage: string = 'Loading data. Please wait...';
 
     constructor(private _employeeService: EmployeeService,
-        private _activatedRoute: ActivatedRoute, private _router: Router) { }
+        private _activatedRoute: ActivatedRoute,
+        private _router: Router) { }
 
     ngOnInit() {
-        debugger
         let empCode: string = this._activatedRoute.snapshot.params['code'];
-        this._employeeService.getEmployeesByCode(empCode).subscribe(
-            (employeeData) => {
+        // this._employeeService.getEmployeesByCode(empCode).subscribe(
+        //     (employeeData) => {
+        //         if (employeeData == null) {
+        //             this.statusMessage = 'Employee with the specified Employee Code does not exist';
+        //         }
+        //         else {
+        //             this.employee = employeeData;
+        //         }
+        //     },
+        //     (error) => {
+        //         this.statusMessage = 'Problem with the service. Please try again after sometime';
+        //         console.error(error);
+        //     }
+        // )
+        this._employeeService.getEmployeeByCodePromise(empCode)
+            .then((employeeData) => {
                 if (employeeData == null) {
-                    this.statusMessage = 'Employee with the specified Employee Code does not exist';
+                    this.statusMessage =
+                        'Employee with the specified Employee Code does not exist';
                 }
                 else {
                     this.employee = employeeData;
                 }
-            },
-            (error) => {
-                this.statusMessage = 'Problem with the service. Please try again after sometime';
+            }).catch((error) => {
+                this.statusMessage =
+                    'Problem with the service. Please try again after sometime';
                 console.error(error);
-            }
-        )
+            });
+
     }
     onBackButtonClick() {
         this._router.navigate(['/employees']);
