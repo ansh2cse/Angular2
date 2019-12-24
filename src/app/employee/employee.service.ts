@@ -39,7 +39,7 @@ export class EmployeeService {
     // logs the error to the console and throws the exception again
     getEmployeeByCodePromise(empCode: string): Promise<IEmployee> {
         return this._http.get("http://localhost:5000/Employees/" + empCode)
-            .map((response: Response) => <IEmployee>response.json())
+            .map((response: Response) => response.json())
             .toPromise()
             .catch(this.handlePromiseError);
     }
