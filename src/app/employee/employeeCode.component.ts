@@ -8,6 +8,8 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/scan';
+// import ISubscription.
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
     templateUrl: 'app/employee/employeeCode.component.html',
@@ -17,6 +19,13 @@ import 'rxjs/add/operator/scan';
 export class EmployeeCodeComponent implements OnInit {
     employee: IEmployee;
     statusMessage: string = 'Loading data. Please wait...';
+    retryCount: number = 1;
+    // Create a class property of type ISubscription
+    // The ISubscription interface has closed property
+    // The ngIf directive in the HTML binds to this property
+    // Go to the difinition of ISubscription interface to
+    // see the closed property
+    subscription: ISubscription;
 
     constructor(private _employeeService: EmployeeService,
         private _activatedRoute: ActivatedRoute,
@@ -25,7 +34,7 @@ export class EmployeeCodeComponent implements OnInit {
     ngOnInit() {
         let empCode: string = this._activatedRoute.snapshot.params['code'];
 
-        this._employeeService.getEmployeesByCode(empCode)
+        this.subscription = this._employeeService.getEmployeesByCode(empCode)
             // Chain the retry operator to retry on error.
             //.retry()
             // Retry only 3 times if there is an error
@@ -77,6 +86,16 @@ export class EmployeeCodeComponent implements OnInit {
     }
     onBackButtonClick() {
         this._router.navigate(['/employees']);
+    }
+
+    // This method is bound to the click event of the "Cancel Request" button
+    // Notice we are using the unsubscribe() method of the subscription object
+    // to unsubscribe from the observable to cancel the request. We are also
+    // setting the status message property of the class to "Request Cancelled"
+    // This message is displayed to the user to indicate that the request is cancelled
+    onCancelButtonClick(): void {
+        this.statusMessage = 'Request cancelled';
+        this.subscription.unsubscribe();
     }
 
 }
